@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: arefevpro-web
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: arefevpro-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: arefev
+      POSTGRES_PASSWORD: arefevpass
+      POSTGRES_DB: arefevpro
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
