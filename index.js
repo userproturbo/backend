@@ -5,6 +5,9 @@ const server = http.createServer((req, res) => {
     "Content-Type": "text/plain; charset=utf-8",
   });
   res.end("Hello backend 👋");
+  document.querySelector("button").addEventListener("click", () => {
+    alert("Hi!");
+  });
 });
 
 server.listen(3000, () => {
